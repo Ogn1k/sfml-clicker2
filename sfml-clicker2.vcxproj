@@ -147,8 +147,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\button.h" />
+    <ClInclude Include="src\Game.h" />
+    <ClInclude Include="src\Scene.h" />
     <ClInclude Include="src\lvl1.h" />
-    <ClInclude Include="src\openWindow.h" />
     <ClInclude Include="src\Sprite2.h" />
     <ClInclude Include="src\Text2.h" />
   </ItemGroup>
@@ -156,9 +158,11 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\button.cpp" />
+    <ClCompile Include="src\Game.cpp" />
+    <ClCompile Include="src\Scene.cpp" />
     <ClCompile Include="src\lvl1.cpp" />
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\openWindow.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

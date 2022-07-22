@@ -4,17 +4,18 @@ using namespace sf;
 
 class Sprite2
 {
-private:
+protected:
 	Sprite sprite;
 	Image image;
 	Texture texture;
 	IntRect box;
 	RectangleShape debugBox;
-	float originX, originY, scaleX, scaleY;
+	float scaleX = 1, scaleY = 1;
 public:
 
 	Sprite2(String patch= "textures/missing.png", int x = 0, int y = 0)
 	{
+
 		image.loadFromFile(patch);
 		texture.loadFromImage(image);
 		sprite.setTexture(texture);
@@ -32,6 +33,10 @@ public:
 	Texture getTexture()
 	{
 		return texture;
+	}
+	Vector2f getPosition()
+	{
+		return sprite.getPosition(); 
 	}
 	IntRect getRect()
 	{
@@ -53,11 +58,15 @@ public:
 		texture.loadFromImage(image);
 		sprite.setColor(color);
 	}
-	void setOrigin(float x, float y)
+	void setColorSimple(Color color)
 	{
-		originX = x; originY = y;
-		sprite.setOrigin(Vector2f(x, y));
+		sprite.setColor(color); 
 	}
+	//void setOrigin(float x, float y)
+	//{
+	//	originX = x; originY = y;
+	//	sprite.setOrigin(Vector2f(x, y));
+	//}
 	void setScale(float width, float height)
 	{
 		scaleX = width; scaleY = height;
@@ -69,6 +78,14 @@ public:
 		debugBox.setSize(Vector2f(box.width, box.height));
 
 		return debugBox;
+	}
+	virtual void update(const float& deltatime)
+	{
+	}
+	virtual void render(RenderTarget* target)
+	{
+		//target->draw(renderDebug());
+		target->draw(getSprite());
 	}
 };
 

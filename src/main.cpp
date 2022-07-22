@@ -1,6 +1,6 @@
-#include "openWindow.h"
+#include "Game.h"
 
 int main()
 {
-	mainFuncs funcs;
+	Game::getInstance().run();
 }

@@ -18,13 +18,19 @@
     <ClInclude Include="src\lvl1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\openWindow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\Sprite2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Text2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Game.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -38,7 +44,13 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\openWindow.cpp">
+    <ClCompile Include="src\Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Scene.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
