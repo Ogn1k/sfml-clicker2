@@ -29,6 +29,6 @@ void Scene::updateMousePosition()
 	mousePosWindow = Mouse::getPosition(*window);
 	mousePosView = window->mapPixelToCoords(Mouse::getPosition(*window));
 
-	system("cls");
-	std::cout << Mouse::getPosition(*window).x << " " << Mouse::getPosition(*window).y;
+	//system("cls");
+	//std::cout << Mouse::getPosition(*window).x << " " << Mouse::getPosition(*window).y;
 }

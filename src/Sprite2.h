@@ -1,22 +1,39 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <iostream>
 using namespace sf;
 
 class Sprite2
 {
 protected:
-	Sprite sprite;
 	Image image;
 	Texture texture;
 	IntRect box;
 	RectangleShape debugBox;
 	float scaleX = 1, scaleY = 1;
+	bool active = true;
 public:
-
-	Sprite2(String patch= "textures/missing.png", int x = 0, int y = 0)
+	Sprite sprite;
+	Sprite2() = default;
+	Sprite2(Texture patch, int x, int y )
 	{
+		sprite.setTexture(patch);
+		sprite.setPosition(x, y);
 
-		image.loadFromFile(patch);
+		box = IntRect(sprite.getPosition().x, sprite.getPosition().y, sprite.getTextureRect().width, sprite.getTextureRect().height);
+
+	}
+	Sprite2(std::string patch, int x , int y)
+	{
+		
+		if (patch == "")
+		{
+
+		}
+		else if (!image.loadFromFile(patch))
+			image.loadFromFile("textures/missing.png");
+		
+
 		texture.loadFromImage(image);
 		sprite.setTexture(texture);
 		sprite.setPosition(x, y);
@@ -25,10 +42,6 @@ public:
 
 		
 		
-	}
-	Sprite getSprite()
-	{
-		return sprite;
 	}
 	Texture getTexture()
 	{
@@ -79,13 +92,18 @@ public:
 
 		return debugBox;
 	}
+	void setActive(bool act)
+	{
+		act = active;
+	}
 	virtual void update(const float& deltatime)
 	{
 	}
 	virtual void render(RenderTarget* target)
 	{
 		//target->draw(renderDebug());
-		target->draw(getSprite());
+		if(active)
+			target->draw(sprite);
 	}
 };
 

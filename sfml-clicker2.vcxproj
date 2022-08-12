@@ -119,6 +119,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>C:\Users\Khlulhloo\source\repos\sfml-clicker2\lib\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -147,6 +148,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Header.h" />
+    <ClInclude Include="src\PoolObject.h" />
+    <ClInclude Include="src\poolManager.h" />
     <ClInclude Include="src\button.h" />
     <ClInclude Include="src\Game.h" />
     <ClInclude Include="src\Scene.h" />
@@ -158,6 +162,7 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\poolManager.cpp" />
     <ClCompile Include="src\button.cpp" />
     <ClCompile Include="src\Game.cpp" />
     <ClCompile Include="src\Scene.cpp" />

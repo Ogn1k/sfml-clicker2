@@ -1,13 +1,45 @@
 #include "button.h"
 
+
+button::button(float x, float y, float width, float height, std::string text, Texture* image, Color idleColor, Color hoverColor, Color activeColor)
+{
+	buttonState = BTN_IDLE;
+
+	buttonS.setTexture(*image);
+	buttonS.setPosition(x, y);
+	
+
+	//texture.loadFromFile(image);
+	//buttonS.setPosition(Vector2f(x, y));
+	//buttonS.setTexture(texture);
+	buttonS.setScale(width / buttonS.getGlobalBounds().width, height / buttonS.getGlobalBounds().height);
+
+	buttonT.setString(text);
+	buttonT.setColor(Color::White);
+	buttonT.setPos(buttonS.getPosition().x / 2.f, buttonS.getPosition().y);
+
+	this->activeColor = activeColor;
+	this->hoverColor = hoverColor;
+	this->idleColor = idleColor;
+
+	this->width = width;
+	this->height = height;
+
+}
+
 button::button(float x, float y, float width, float height,
 	std::string text, std::string image,
 	Color idleColor, Color hoverColor, Color activeColor)
 {
 	buttonState = BTN_IDLE;
+	texture.loadFromFile(image);
+	buttonS.setTexture(texture);
+	buttonS.setPosition(x, y);
 
-	buttonS = Sprite2(image, x, y);
-	buttonS.setScale(width / buttonS.getRect().width, height / buttonS.getRect().height);
+	//texture.loadFromFile(image);
+	//buttonS.setPosition(Vector2f(x, y));
+	//buttonS.setTexture(texture);
+   buttonS.setScale(width / buttonS.getGlobalBounds().width, height / buttonS.getGlobalBounds().height);
 
 	buttonT.setString(text);
 	buttonT.setColor(Color::White);
@@ -17,9 +49,11 @@ button::button(float x, float y, float width, float height,
 	this->hoverColor = hoverColor;
 	this->idleColor = idleColor;
 
-	buttonS.setColor(Color::Black);
-	buttonS.setColorSimple(this->idleColor);
+	//buttonS.setColor(Color::Black);
+	//buttonS.setColorSimple(this->idleColor);
 }
+
+
 
 button::~button()
 {
@@ -38,11 +72,10 @@ const bool button::isPressed() const
 }
 
 
-
 void button::update(Vector2f mousePos)
 {
 	buttonState = BTN_IDLE;
-	if (buttonS.getSprite().getGlobalBounds().contains(mousePos))
+	if (buttonS.getGlobalBounds().contains(mousePos))
 	{
 		buttonState = BTN_HOVER;
 		if (Mouse::isButtonPressed(Mouse::Left))
@@ -53,13 +86,13 @@ void button::update(Vector2f mousePos)
 	switch (buttonState)
 	{
 	case BTN_IDLE:
-		buttonS.setColorSimple(idleColor);
+		buttonS.setColor(idleColor);
 		break;
 	case BTN_HOVER:
-		buttonS.setColorSimple(hoverColor);
+		buttonS.setColor(hoverColor);
 		break;
 	case BTN_ACTIVE:
-		buttonS.setColorSimple(activeColor);
+		buttonS.setColor(activeColor);
 		break;
 	default:
 		break;
@@ -68,5 +101,5 @@ void button::update(Vector2f mousePos)
 
 void button::render(RenderTarget* target)
 {
-	buttonS.render(target);
+	target->draw(buttonS);
 }

@@ -1,12 +1,14 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <iostream>
 #include <fstream>
 #include <sstream>
 #include <vector>
 #include <stack>
 #include <map>
+#include "Text2.h"
+#include "button.h"
+#include "Header.h"
 
 using namespace sf;
 
@@ -17,7 +19,6 @@ private:
 protected:
 
 	RenderWindow* window;
-	std::vector<Texture> textures;
 	bool quit;
 
 	Vector2i mousePosScreen;
@@ -28,7 +29,7 @@ public:
 
 	Scene(RenderWindow* window);
 	virtual ~Scene();
-
+	
 
 	const bool& getQuit() const;
 	virtual void checkForQuit();
@@ -38,6 +39,6 @@ public:
 	virtual void updateInput(const float& deltatime) = 0;
 	virtual void updateMousePosition();
 	virtual void update(const float& deltaTime) = 0;
-	virtual void render(RenderTarget* target = nullptr) = 0;
+	virtual void render(RenderTarget* target = nullptr, RenderStates* states = nullptr) = 0;
 };
 
