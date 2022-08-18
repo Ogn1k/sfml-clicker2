@@ -96,6 +96,7 @@ public:
 	{
 		act = active;
 	}
+
 	virtual void update(const float& deltatime)
 	{
 	}

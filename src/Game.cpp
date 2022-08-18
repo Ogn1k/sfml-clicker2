@@ -24,14 +24,26 @@ void Game::initWin()
 
 void Game::initScenes()
 {
-	scenes.push(new lvl1(window));
+	a = new lvl1(&sceneData);
+	b = new lvl2(&sceneData);
+	scenes.push_back(a);
+	//scenes.push(new lvl2(window, &scenes));
+	
+}
+
+void Game::initSceneData()
+{
+	sceneData.window = window;
+	sceneData.scenes = &scenes;
 }
 
 Game::Game()
 {
 
 	initWin();
+	initSceneData();
 	initScenes();
+	
 
 }
 
@@ -41,8 +53,8 @@ Game::~Game()
 
 	while (scenes.empty())
 	{
-		delete scenes.top();
-		scenes.pop();
+		delete scenes.back();
+		scenes.pop_back();
 	}
 }
 
@@ -50,6 +62,27 @@ void Game::endApp()
 {
 	//saving... i guess?
 }
+
+
+
+void Game::changeScene(int lvl)
+{
+	if (lvl == 1)
+	{
+
+		std::cout << "aa" << std::endl;
+		scenes.front() = a;
+
+	}
+	if(lvl == 2)
+	{
+		std::cout << "bb" << std::endl;
+		scenes.back() = b;
+		
+	}
+}
+
+
 
 Game& Game::getInstance()
 {
@@ -69,7 +102,7 @@ void Game::updateSfmlEvents()
 		if (sfEvent.type == Event::Closed)
 			window->close();
 		if (!scenes.empty())
-			scenes.top()->updateSfmlEvents(sfEvent);
+			scenes.back()->updateSfmlEvents(sfEvent);
 	}
 }
 
@@ -79,12 +112,12 @@ void Game::update()
 
 	if (!scenes.empty())
 	{
-		scenes.top()->update(deltaTime);
-		if (scenes.top()->getQuit())
+		scenes.back()->update(deltaTime);
+		if (scenes.back()->getQuit())
 		{
-			scenes.top()->endScene();
-			delete scenes.top();
-			scenes.pop();
+			scenes.back()->endScene();
+			delete scenes.back();
+			scenes.back();
 		}
 	}
 	else
@@ -101,7 +134,7 @@ void Game::render()
 
 	//
 	if (!scenes.empty())
-		scenes.top()->render();
+		scenes.back()->render();
 	
 	window->display();
 

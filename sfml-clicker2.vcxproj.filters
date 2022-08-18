@@ -39,7 +39,7 @@
     <ClInclude Include="src\PoolObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Header.h">
+    <ClInclude Include="src\lvl2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -63,6 +63,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\poolManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\lvl2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

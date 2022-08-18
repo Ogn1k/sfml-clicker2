@@ -1,7 +1,8 @@
 #include "lvl1.h"
 EntityPool* EntityPool::instance = 0;
-lvl1::lvl1(RenderWindow* window)
-	: Scene(window)
+
+lvl1::lvl1(ScenePublicData* sceneData)
+	: Scene(sceneData)
 {
 	std::ifstream ifs("config.ini");
 
@@ -14,8 +15,6 @@ lvl1::lvl1(RenderWindow* window)
 	menuRect.setFillColor(Color(37, 197, 230));
 	background.setPosition(0, menuRect.getSize().y);
 	background.setFillColor(Color(255, 255, 255));
-	foodI.setColor(Color::Black);
-	foodI.setScale(0.4, 0.4);
 	cirniS.sprite.setOrigin(Vector2f(cirniS.getTexture().getSize().x * 0.5, cirniS.getTexture().getSize().y * 0.5));
 	cirniS.setScale(1.4, 1.4);
 	
@@ -43,11 +42,13 @@ void lvl1::menu()
 
 lvl1::~lvl1()
 {
+	
 }
 
 void lvl1::endScene()
 {
-	//saving
+	sceneData->cirniScale = cirniS.sprite.getScale();
+	std::cout << "asd";
 }
 
 void lvl1::updateSomething(const float& deltatime)
@@ -55,7 +56,6 @@ void lvl1::updateSomething(const float& deltatime)
 	
 	for (auto i : objs)
 	{
-		//i->shoot(Vector2f(i->getPos().x, windowSize.height));
 		i->shoot(Vector2f(0, 1));
 		i->update(deltatime);
 		//
@@ -80,28 +80,28 @@ void lvl1::updateSomething(const float& deltatime)
 
 void lvl1::updateSfmlEvents(Event event)
 {
+	foodIconButton.updateEvented(mousePosView, event, true);
+	workIconButton.updateEvented(mousePosView, event, true);
 	if (event.type == sf::Event::MouseButtonPressed)
 	{
-		if (cirniS.getRect().contains(Mouse::getPosition(*window)) && event.mouseButton.button == sf::Mouse::Left && !foodMenu)
+		if(workIconButton.isPressed())
 		{
-			/*countText.setString(std::to_string(count));
-			count++;*/
+			endScene();
+			Game::getInstance().changeScene(2);
+			
 		}
-		if (foodI.getRect().contains(Mouse::getPosition(*window)) && event.mouseButton.button == sf::Mouse::Left)
+		if(foodIconButton.isPressed())
 		{
 			foodMenu = !foodMenu;
 		}
-		if (foodIcon.sprite.getColor() == Color(255, 255, 255, 255) && !foodMenu)
+		if (foodIcon.sprite.getColor() == Color(255, 255, 255, 255) && !foodMenu && !foodIconButton.isHover() && !workIconButton.isHover())
 		{
-			//if (Mouse::isButtonPressed(sf::Mouse::Left))
 			if(event.mouseButton.button == sf::Mouse::Left)
 			{
 				Entity* tempEnt = pool->create(mousePosView, &buttonTexture, offsetX);
 				std::cout << tempEnt << std::endl;
 				objs.push_front(tempEnt);
-				//p.setPosition(mousePosView);
-				std::cout << "a";
-				//p.shoot(Vector2f(p.getPosition().x, windowSize.height));
+
 			}
 		}
 	}
@@ -139,7 +139,6 @@ void lvl1::updateMenu()
 
 void lvl1::update(const float& deltatime)
 {
-	//p.update(deltatime);
 	updateSomething(deltatime);
 
 	updateInput(deltatime);
@@ -147,7 +146,6 @@ void lvl1::update(const float& deltatime)
 
 	updateMenu();
 
-	//
 }
 
 void lvl1::render(RenderTarget* target, RenderStates* states)
@@ -157,7 +155,8 @@ void lvl1::render(RenderTarget* target, RenderStates* states)
 
 	target->draw(background);
 	target->draw(menuRect);
-	foodI.render(target);
+	foodIconButton.render(target);
+	workIconButton.render(target);
 	cirniS.render(target);
 	countText.render(target);
 	foodIcon.render(target);
@@ -181,5 +180,8 @@ void lvl1::render(RenderTarget* target, RenderStates* states)
 			//target->draw(p);
 			
 		}
-	}
+	} 
+	
 }
+
+

@@ -1,8 +1,12 @@
 #include "Scene.h"
 
-Scene::Scene(RenderWindow* window)
+
+
+Scene::Scene(ScenePublicData* sceneData)
 {
-	this->window = window;
+	this->sceneData = sceneData;
+	this->scenes = sceneData->scenes;
+	this->window = sceneData->window;
 	quit = false;
 }
 
@@ -17,6 +21,11 @@ const bool& Scene::getQuit() const
 
 void Scene::checkForQuit()
 {
+}
+
+void Scene::endScene()
+{
+	quit = true;
 }
 
 void Scene::updateInput(const float& deltatime)

@@ -8,7 +8,7 @@ button::button(float x, float y, float width, float height, std::string text, Te
 	buttonS.setTexture(*image);
 	buttonS.setPosition(x, y);
 	
-
+	texture = *image;
 	//texture.loadFromFile(image);
 	//buttonS.setPosition(Vector2f(x, y));
 	//buttonS.setTexture(texture);
@@ -64,6 +64,13 @@ void button::unPress()
 	buttonState = BTN_IDLE;
 }
 
+bool button::isHover()
+{
+	if (buttonState == BTN_HOVER)
+		return true;
+	return false;
+}
+
 const bool button::isPressed() const
 {
 	if (buttonState == BTN_ACTIVE)
@@ -71,8 +78,72 @@ const bool button::isPressed() const
 	return false;
 }
 
+void button::setColorB(Color color)
+{
+	Image image = texture.copyToImage();
+	auto const sz = image.getSize();
+	for (std::size_t y = 0; y < sz.y; ++y) {
+		for (std::size_t x = 0; x < sz.x; ++x) {
+			Color pixel = image.getPixel(x, y);
+			pixel.r = 255;
+			pixel.g = 255;
+			pixel.b = 255;
+			image.setPixel(x, y, pixel);
+		}
+	}
+	texture.loadFromImage(image);
+	buttonS.setColor(color);
+}
 
-void button::update(Vector2f mousePos)
+void button::updateEvented(Vector2f mousePos, Event event, bool fullColor)
+{
+	buttonState = BTN_IDLE;
+	if (buttonS.getGlobalBounds().contains(mousePos))
+	{
+		buttonState = BTN_HOVER;
+		if (event.mouseButton.button == sf::Mouse::Left)
+		{
+			buttonState = BTN_ACTIVE;
+		}
+	}
+	if (fullColor)
+	{
+		switch (buttonState)
+		{
+		case BTN_IDLE:
+			setColorB(idleColor);
+			break;
+		case BTN_HOVER:
+			setColorB(hoverColor);
+			break;
+		case BTN_ACTIVE:
+			setColorB(activeColor);
+			break;
+		default:
+			break;
+		}
+	}
+	else
+	{
+		switch (buttonState)
+		{
+		case BTN_IDLE:
+			buttonS.setColor(idleColor);
+			break;
+		case BTN_HOVER:
+			buttonS.setColor(hoverColor);
+			break;
+		case BTN_ACTIVE:
+			buttonS.setColor(activeColor);
+			break;
+		default:
+			break;
+		}
+	}
+	
+}
+
+void button::update(Vector2f mousePos, bool fullColor)
 {
 	buttonState = BTN_IDLE;
 	if (buttonS.getGlobalBounds().contains(mousePos))
@@ -83,19 +154,39 @@ void button::update(Vector2f mousePos)
 			buttonState = BTN_ACTIVE;
 		}
 	}
-	switch (buttonState)
+	if (fullColor)
 	{
-	case BTN_IDLE:
-		buttonS.setColor(idleColor);
-		break;
-	case BTN_HOVER:
-		buttonS.setColor(hoverColor);
-		break;
-	case BTN_ACTIVE:
-		buttonS.setColor(activeColor);
-		break;
-	default:
-		break;
+		switch (buttonState)
+		{
+		case BTN_IDLE:
+			setColorB(idleColor);
+			break;
+		case BTN_HOVER:
+			setColorB(hoverColor);
+			break;
+		case BTN_ACTIVE:
+			setColorB(activeColor);
+			break;
+		default:
+			break;
+		}
+	}
+	else
+	{
+		switch (buttonState)
+		{
+		case BTN_IDLE:
+			buttonS.setColor(idleColor);
+			break;
+		case BTN_HOVER:
+			buttonS.setColor(hoverColor);
+			break;
+		case BTN_ACTIVE:
+			buttonS.setColor(activeColor);
+			break;
+		default:
+			break;
+		}
 	}
 }
 

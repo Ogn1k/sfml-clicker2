@@ -148,7 +148,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\Header.h" />
+    <ClInclude Include="src\lvl2.h" />
     <ClInclude Include="src\PoolObject.h" />
     <ClInclude Include="src\poolManager.h" />
     <ClInclude Include="src\button.h" />
@@ -162,6 +162,7 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\lvl2.cpp" />
     <ClCompile Include="src\poolManager.cpp" />
     <ClCompile Include="src\button.cpp" />
     <ClCompile Include="src\Game.cpp" />

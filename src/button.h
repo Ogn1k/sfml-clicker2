@@ -38,8 +38,11 @@ public:
 	//Texture texture;
 	const bool isPressed()const;
 	void unPress();
+	bool isHover();
+	void setColorB(Color color);
 
-	void update(Vector2f mousePos);
+	void updateEvented(Vector2f mousePos, Event event, bool fullColor = false);
+	void update(Vector2f mousePos, bool fullColor = false);
 	void render(RenderTarget* target);
 };
 

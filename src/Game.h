@@ -1,28 +1,36 @@
 #pragma once
 #include "lvl1.h"
+#include <algorithm>
 
 using namespace sf;
 
 class Game
 {
-private:
+	RenderWindow* window;
+	std::vector<Scene*> scenes;
+	
+	ScenePublicData sceneData;
 
-	RenderWindow *window;
 	Event sfEvent;
 
 	Clock deltaTimeClock;
 	float deltaTime;
 
-	std::stack<Scene*> scenes;
+	Scene* a;
+	Scene* b;
 
 	void initWin();
 	void initScenes();
 
 public:
+	
 	Game();
 	virtual ~Game();
 
 	void endApp();
+
+	void initSceneData();
+	void changeScene(int lvl);
 
 	void uptadeDeltaTime();
 	void updateSfmlEvents();

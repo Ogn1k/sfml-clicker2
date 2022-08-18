@@ -5,18 +5,33 @@
 #include <sstream>
 #include <vector>
 #include <stack>
+#include <iostream>
 #include <map>
 #include "Text2.h"
 #include "button.h"
-#include "Header.h"
+#include "poolManager.h"
+
 
 using namespace sf;
+
+class Scene;
+
+struct ScenePublicData
+{
+	ScenePublicData() {}
+	RenderWindow* window;
+	std::vector<Scene*>* scenes;
+	Vector2f cirniScale;
+};
 
 class Scene
 {
 private:
 
 protected:
+	ScenePublicData* sceneData;
+
+	std::vector<Scene*>* scenes;
 
 	RenderWindow* window;
 	bool quit;
@@ -27,13 +42,13 @@ protected:
 
 public:
 
-	Scene(RenderWindow* window);
+	Scene(ScenePublicData* sceneData );
 	virtual ~Scene();
 	
 
 	const bool& getQuit() const;
 	virtual void checkForQuit();
-	virtual void endScene() = 0;
+	virtual void endScene();
 
 	virtual void updateSfmlEvents(Event event) = 0;
 	virtual void updateInput(const float& deltatime) = 0;
