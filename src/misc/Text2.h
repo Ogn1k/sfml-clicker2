@@ -3,10 +3,10 @@
 using namespace sf;
 class Text2
 {
-private:
 	Font font;
-	Text text;
+	
 public:
+	Text text;
 	Text2(String StringText= "no text", int size = 28, Color color = Color::Red, Color color2=Color::Transparent , int thicknes=1)
 	{
 		font.loadFromFile("textures/helvetica_regular.otf");
@@ -16,14 +16,6 @@ public:
 		text.setFillColor(color);
 		text.setOutlineColor(color2 );
 		text.setOutlineThickness(thicknes);
-	}
-	Text getText()
-	{
-		return text;
-	}
-	Font getFont()
-	{
-		return font;
 	}
 	void setString(String StringText)
 	{
@@ -42,6 +34,6 @@ public:
 	}
 	virtual void render(RenderTarget* target)
 	{
-		target->draw(getText());
+		target->draw(text);
 	}
 };

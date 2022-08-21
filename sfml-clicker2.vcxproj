@@ -116,16 +116,16 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SFML_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Khlulhloo\source\repos\sfml-clicker2\lib\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Khlulhloo\source\repos\Ogn1k\sfml-clicker2\src;C:\Users\Khlulhloo\source\repos\sfml-clicker2\lib\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\Khlulhloo\source\repos\sfml-clicker2\lib\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-audio-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -134,41 +134,51 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SFML_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>F:\Users\Ogn1k\source\repos\sfml-clicker2\lib\SFML-2.5.1\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Khlulhloo\source\repos\Ogn1k\sfml-clicker2\lib\SFML-2.5.1\include;C:\Users\Khlulhloo\source\repos\Ogn1k\sfml-clicker2\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>F:\Users\Ogn1k\source\repos\sfml-clicker2\lib\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>sfml-graphics.lib;sfml-window.lib;sfml-audio.lib;sfml-network.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Khlulhloo\source\repos\Ogn1k\sfml-clicker2\lib\SFML-2.5.1\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-main.lib;sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib;opengl32.lib;freetype.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\lvl2.h" />
-    <ClInclude Include="src\PoolObject.h" />
-    <ClInclude Include="src\poolManager.h" />
-    <ClInclude Include="src\button.h" />
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="src\scenes\lvl0.h" />
+    <ClInclude Include="src\scenes\lvl2.h" />
+    <ClInclude Include="src\misc\PoolObject.h" />
+    <ClInclude Include="src\misc\poolManager.h" />
+    <ClInclude Include="src\misc\button.h" />
     <ClInclude Include="src\Game.h" />
-    <ClInclude Include="src\Scene.h" />
-    <ClInclude Include="src\lvl1.h" />
-    <ClInclude Include="src\Sprite2.h" />
-    <ClInclude Include="src\Text2.h" />
+    <ClInclude Include="src\scenes\Scene.h" />
+    <ClInclude Include="src\scenes\lvl1.h" />
+    <ClInclude Include="src\misc\Sprite2.h" />
+    <ClInclude Include="src\misc\Text2.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\lvl2.cpp" />
-    <ClCompile Include="src\poolManager.cpp" />
-    <ClCompile Include="src\button.cpp" />
+    <ClCompile Include="src\scenes\lvl0.cpp" />
+    <ClCompile Include="src\scenes\lvl2.cpp" />
+    <ClCompile Include="src\misc\poolManager.cpp" />
+    <ClCompile Include="src\misc\button.cpp" />
     <ClCompile Include="src\Game.cpp" />
-    <ClCompile Include="src\Scene.cpp" />
-    <ClCompile Include="src\lvl1.cpp" />
+    <ClCompile Include="src\scenes\Scene.cpp" />
+    <ClCompile Include="src\scenes\lvl1.cpp" />
     <ClCompile Include="src\main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="textures\cirni.ico" />
+    <Image Include="textures\cirni.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="sfml-clicker2.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

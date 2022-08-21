@@ -1,15 +1,11 @@
 #pragma once
 
-#include <SFML/Graphics.hpp>
 #include <fstream>
 #include <sstream>
 #include <vector>
-#include <stack>
-#include <iostream>
-#include <map>
-#include "Text2.h"
-#include "button.h"
-#include "poolManager.h"
+//#include <map>
+#include "misc/button.h"
+#include "misc/poolManager.h"
 
 
 using namespace sf;
@@ -18,10 +14,14 @@ class Scene;
 
 struct ScenePublicData
 {
-	ScenePublicData() {}
+	ScenePublicData() {};
 	RenderWindow* window;
 	std::vector<Scene*>* scenes;
-	Vector2f cirniScale;
+	Vector2f cirniScale = Vector2f(1.4, 1.4);
+	float count = 0;
+	
+	VideoMode windowSize = VideoMode(768, 768);
+
 };
 
 class Scene

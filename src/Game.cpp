@@ -1,5 +1,6 @@
 #include "Game.h"
 
+
 void Game::initWin()
 {
 
@@ -20,12 +21,17 @@ void Game::initWin()
 	window = new RenderWindow(windowSize, title);
 	window->setFramerateLimit(framerateLimit);
 	window->setVerticalSyncEnabled(vertSinc);
+
+
+	winIcon.loadFromFile("textures/cirni.png");
+	window->setIcon(winIcon.getSize().x, winIcon.getSize().y, winIcon.getPixelsPtr());
 }
 
 void Game::initScenes()
 {
-	a = new lvl1(&sceneData);
-	b = new lvl2(&sceneData);
+	a = new lvl0(&sceneData);
+	b = new lvl1(&sceneData);
+	c = new lvl2(&sceneData);
 	scenes.push_back(a);
 	//scenes.push(new lvl2(window, &scenes));
 	
@@ -35,6 +41,12 @@ void Game::initSceneData()
 {
 	sceneData.window = window;
 	sceneData.scenes = &scenes;
+	std::ifstream ifs("config.ini");
+	if (ifs.is_open())
+	{
+		ifs >> sceneData.windowSize.width >> sceneData.windowSize.height;
+	}
+	ifs.close();
 }
 
 Game::Game()
@@ -65,20 +77,26 @@ void Game::endApp()
 
 
 
-void Game::changeScene(int lvl)
+void Game::changeScene(int lvl, ScenePublicData* scene_data)
 {
-	if (lvl == 1)
+	if (lvl == 0)
 	{
-
-		std::cout << "aa" << std::endl;
-		scenes.front() = a;
-
+		std::cout << "a" << std::endl;
+		scenes.front() = new lvl0(scene_data);
 	}
-	if(lvl == 2)
+	else if (lvl == 1)
 	{
-		std::cout << "bb" << std::endl;
-		scenes.back() = b;
-		
+		std::cout << "b" << std::endl;
+		scenes.back() = new lvl1(scene_data);
+	}
+	else if (lvl == 2)
+	{
+		std::cout << "c" << std::endl;
+		scenes.back() = new lvl2(scene_data);
+	}
+	else
+	{
+		std::cout << "no lvl " << lvl << std::endl;
 	}
 }
 

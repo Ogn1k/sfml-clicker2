@@ -1,5 +1,5 @@
 #pragma once
-#include "Scene.h"
+#include "lvl0.h"
 #include "lvl2.h"
 #include "Game.h"
 
@@ -14,13 +14,16 @@ protected:
 	Vector2f fmroSize;
 	Vector2f fmriSize;
 
-	VideoMode windowSize = VideoMode(768, 768);
+	VideoMode windowSize = sceneData->windowSize;
 
-	float count = 0;
+	
 	bool foodMenu = false;
 	float gridSize = 100;
 
 	IntRect offsetX;
+	float foodMass;
+	float coutSumm;
+	Font fontLink;
 	
 	Texture buttonTexture;
 
@@ -28,9 +31,9 @@ protected:
 	button workIconButton = button(windowSize.width / 1.18, -3, 50, 50, "", "textures/pack.png", Color::Black, Color::Yellow, Color::Green);
 
 	Sprite2 cirniS = Sprite2("textures/cirni.png", windowSize.width / 2, windowSize.height / 2);
-	Sprite2 foodIcon = Sprite2("textures/Untitled.png", 45, 8);
+	Sprite2 foodIcon = Sprite2("textures/foodItems.png", 100, 8);
 
-	Text2 countText = Text2(std::to_string(int(count)), 30, Color::Green, Color(0, 102, 27));
+	Text2 countText = Text2(std::to_string(sceneData->count), 30, Color::Green, Color(0, 102, 27));
 	RectangleShape background = RectangleShape(Vector2f(windowSize.width, windowSize.height));
 	RectangleShape menuRect = RectangleShape(Vector2f(windowSize.width , windowSize.height / 16));
 	std::vector < std::vector < button>> buttonsMesh;

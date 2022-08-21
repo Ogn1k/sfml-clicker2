@@ -15,31 +15,37 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\lvl1.h">
+    <ClInclude Include="src\scenes\lvl1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Sprite2.h">
+    <ClInclude Include="src\misc\Sprite2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Text2.h">
+    <ClInclude Include="src\misc\Text2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Scene.h">
+    <ClInclude Include="src\scenes\Scene.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\button.h">
+    <ClInclude Include="src\misc\button.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\poolManager.h">
+    <ClInclude Include="src\misc\poolManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\PoolObject.h">
+    <ClInclude Include="src\misc\PoolObject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\lvl2.h">
+    <ClInclude Include="src\scenes\lvl2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\scenes\lvl0.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -47,7 +53,7 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\lvl1.cpp">
+    <ClCompile Include="src\scenes\lvl1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\main.cpp">
@@ -56,17 +62,33 @@
     <ClCompile Include="src\Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Scene.cpp">
+    <ClCompile Include="src\scenes\Scene.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\button.cpp">
+    <ClCompile Include="src\misc\button.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\poolManager.cpp">
+    <ClCompile Include="src\misc\poolManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\lvl2.cpp">
+    <ClCompile Include="src\scenes\lvl2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\scenes\lvl0.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="textures\cirni.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="textures\cirni.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="sfml-clicker2.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

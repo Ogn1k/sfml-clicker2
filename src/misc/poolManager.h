@@ -24,7 +24,7 @@ public:
     {
         if (!entities.empty())
         {
-            std::cout << "reusing";
+            //std::cout << "reusing";
             Entity* entity = entities.front();
             entity->setPosition(pos);
             entity->setTexture(tex);
@@ -35,7 +35,7 @@ public:
         }
         else
         {
-            std::cout << "new";
+            //std::cout << "new";
             Entity* ent = new Entity;
             ent->setPosition(pos);
             ent->setTexture(tex);
